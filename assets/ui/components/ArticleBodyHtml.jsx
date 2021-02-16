@@ -47,7 +47,7 @@ class ArticleBodyHtml extends React.PureComponent {
             return null;
         }
 
-        const esHighlightedItem = get(item, 'es_highlight.body_html.length', 0) > 0 ? 
+        const esHighlightedItem = get(item, 'es_highlight.body_html.length', 0) > 0 ?
             {
                 ...item,
                 body_html: item.es_highlight.body_html[0]
@@ -67,6 +67,9 @@ class ArticleBodyHtml extends React.PureComponent {
 ArticleBodyHtml.propTypes = {
     item: PropTypes.shape({
         body_html: PropTypes.string,
+        es_highlight: PropTypes.shape({
+            body_html: PropTypes.string
+        })
     }).isRequired,
     reportCopy: PropTypes.func,
 };

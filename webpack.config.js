@@ -2,8 +2,9 @@
 
 const path = require('path');
 const webpack = require('webpack');
-const ManifestPlugin = require('webpack-manifest-plugin');
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 const NODE_MODULES = process.env.NODE_MODULES || 'node_modules';
+const { ESBuildPlugin } = require('esbuild-loader');
 
 module.exports = {
     entry: {
@@ -53,10 +54,10 @@ module.exports = {
         rules: [
             {
                 test: /\.jsx?$/,
-                loader: 'babel-loader',
+                loader: 'esbuild-loader',
                 options: {
-                    presets: ['es2015', 'react'],
-                    plugins: ['transform-object-rest-spread'],
+                    loader: 'jsx',
+                    target: 'es2015'
                 }
             },
             {
@@ -82,21 +83,19 @@ module.exports = {
             path.resolve(__dirname, 'assets'),
             NODE_MODULES
         ],
+        fallback: { 'path': false }
     },
     resolveLoader: {
         modules: [NODE_MODULES],
     },
     plugins: [
-        new ManifestPlugin(),
+        new ESBuildPlugin(),
+        new WebpackManifestPlugin(),
         new webpack.ProvidePlugin({
             $: 'jquery',
             // bootstrap depenendecies
             'window.jQuery': 'jquery',
             'window.Popper': 'popper.js',
         }),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'common',
-            minChunks: Infinity,
-        }),
-    ]
+    ],
 };

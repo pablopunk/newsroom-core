@@ -6,7 +6,6 @@ import moment from 'moment';
 import CalendarButtonWrapper from './CalendarButtonWrapper';
 
 import 'react-datepicker/dist/react-datepicker.css';
-import {EARLIEST_DATE} from '../utils';
 
 class CalendarButton extends React.Component {
     constructor (props) {
@@ -21,8 +20,9 @@ class CalendarButton extends React.Component {
         this.setState({ startDate: date });
     }
 
+    // eslint-disable-next-line no-unused-vars
     componentDidUpdate(prevProps) {
-        prevProps.activeDate === EARLIEST_DATE && this.setState({ startDate: moment(this.props.activeDate) });
+        this.setState({ startDate: moment(this.props.activeDate) });
     }
 
     render() {

@@ -14,7 +14,6 @@ import {
     selectCard,
     setError,
     fetchProducts,
-    saveProducts,
 } from '../actions';
 import {searchQuerySelector} from 'search/selectors';
 
@@ -108,7 +107,6 @@ class Cards extends React.Component {
                         onClose={this.props.cancelEdit}
                         onDelete={this.deleteCard}
                         products={this.props.products}
-                        saveProducts={this.props.saveProducts}
                         fetchProducts={this.props.fetchProducts}
                         navigations={this.props.navigations}
                         dashboards={this.props.dashboards}
@@ -135,7 +133,6 @@ Cards.propTypes = {
     errors: PropTypes.object,
     dispatch: PropTypes.func,
     products: PropTypes.arrayOf(PropTypes.object),
-    saveProducts: PropTypes.func.isRequired,
     fetchProducts: PropTypes.func.isRequired,
     navigations: PropTypes.arrayOf(PropTypes.object),
     activeDashboard: PropTypes.string.isRequired,
@@ -163,7 +160,6 @@ const mapDispatchToProps = (dispatch) => ({
     deleteCard: (type) => dispatch(deleteCard(type)),
     newCard: () => dispatch(newCard()),
     cancelEdit: (event) => dispatch(cancelEdit(event)),
-    saveProducts: (products) => dispatch(saveProducts(products)),
     fetchProducts: () => dispatch(fetchProducts()),
     dispatch: dispatch,
 });

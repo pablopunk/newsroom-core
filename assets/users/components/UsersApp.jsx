@@ -9,7 +9,6 @@ import {gettext} from 'utils';
 import {
     newUser,
     fetchUsers,
-    fetchCompanies,
     setCompany,
     setSort,
     toggleSortDirection,
@@ -145,7 +144,6 @@ UsersApp.propTypes = {
     setQuery: PropTypes.func,
     errors: PropTypes.object,
     dispatch: PropTypes.func,
-    fetchCompanies: PropTypes.func,
     setCompany: PropTypes.func,
     company: PropTypes.string,
     sort: PropTypes.string,
@@ -159,7 +157,6 @@ const mapDispatchToProps = {
     newUser,
     fetchUsers,
     setQuery: setSearchQuery,
-    fetchCompanies,
     setCompany,
     setSort,
     toggleSortDirection,

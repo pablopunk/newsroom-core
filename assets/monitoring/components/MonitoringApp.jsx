@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { gettext } from 'utils';
 import {
     newMonitoringProfile,
-    setQuery,
     fetchMonitoring,
     setCompany,
     toggleScheduleMode
@@ -63,7 +62,7 @@ class MonitoringApp extends React.Component {
             key={i}
             className='dropdown-item'
             onClick={() => {this.onChange(filter.field, item._id);}}
-        >{item.name}</button>));        
+        >{item.name}</button>));
     }
 
     getActiveQuery() {
@@ -102,7 +101,7 @@ class MonitoringApp extends React.Component {
                 </div>
                 <MonitoringPanel />
             </Fragment>
-            
+
         );
     }
 
@@ -111,7 +110,7 @@ class MonitoringApp extends React.Component {
         if (field === 'company') {
             this.props.setCompany(value);
         }
-        
+
         this.props.fetchMonitoring();
     }
 }
@@ -126,7 +125,6 @@ MonitoringApp.propTypes = {
     users: PropTypes.arrayOf(PropTypes.object),
     activeQuery: PropTypes.string,
     companies: PropTypes.arrayOf(PropTypes.object),
-    setQuery: PropTypes.func,
     errors: PropTypes.object,
     dispatch: PropTypes.func,
     fetchCompanies: PropTypes.func,
@@ -140,7 +138,6 @@ MonitoringApp.propTypes = {
 
 const mapDispatchToProps = {
     newMonitoringProfile,
-    setQuery,
     fetchMonitoring,
     setCompany,
     toggleScheduleMode,
